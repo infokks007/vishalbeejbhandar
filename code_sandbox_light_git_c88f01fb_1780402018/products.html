@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Vishal Beej Bhandar</title>
+  <meta name="description" content="Browse seeds, fungicides, fertilizers & more from Indofil, Seminis & Clause at Vishal Beej Bhandar.">
+  <link rel="icon" href="images/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .shop-layout { display: grid; grid-template-columns: 260px 1fr; gap: 30px; align-items: start; }
+    .filters { position: sticky; top: 90px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    .filters h3 { font-size: 1.05rem; margin-bottom: 16px; display:flex; align-items:center; gap:8px; }
+    .filter-group { margin-bottom: 22px; }
+    .filter-group h4 { font-size: .82rem; text-transform: uppercase; letter-spacing: .5px; color: var(--text-soft); margin-bottom: 10px; }
+    .filter-opt { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: .9rem; cursor: pointer; color: var(--text); }
+    .filter-opt input { accent-color: var(--primary); width:auto; }
+    .price-range { width: 100%; accent-color: var(--accent); }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 22px; flex-wrap: wrap; }
+    .search-box { position: relative; flex: 1; max-width: 420px; }
+    .search-box i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-soft); }
+    .search-box input { width: 100%; padding: 12px 14px 12px 40px; border: 1px solid var(--border); border-radius: 50px; background: var(--bg-card); color: var(--text); }
+    .result-count { color: var(--text-soft); font-size: .9rem; }
+    .mobile-filter-btn { display: none; }
+    @media (max-width: 880px) {
+      .shop-layout { grid-template-columns: 1fr; }
+      .filters { position: fixed; inset: 0; z-index: 200; border-radius: 0; overflow-y: auto; transform: translateX(-100%); transition: transform .3s; }
+      .filters.open { transform: translateX(0); }
+      .mobile-filter-btn { display: inline-flex; }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-holder"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> / <span>Products</span></div>
+      <h1>Our <span class="gradient-text">Products</span></h1>
+      <p>Genuine seeds, crop protection & nutrition from Indofil, Seminis & Clause.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:40px">
+    <div class="container">
+      <div class="shop-layout">
+        <!-- Filters -->
+        <aside class="filters" id="filters">
+          <h3><i class="fa-solid fa-sliders"></i> Filters <button class="modal-close" style="margin-left:auto;display:none" id="close-filters" onclick="document.getElementById('filters').classList.remove('open')">&times;</button></h3>
+          <div class="filter-group">
+            <h4>Search</h4>
+            <input class="input" id="side-search" placeholder="Search products...">
+          </div>
+          <div class="filter-group">
+            <h4>Brand</h4>
+            <div id="brand-filters"></div>
+          </div>
+          <div class="filter-group">
+            <h4>Category</h4>
+            <div id="cat-filters"></div>
+          </div>
+          <div class="filter-group">
+            <h4>Max Price: <span id="price-label">₹2000</span></h4>
+            <input type="range" class="price-range" id="price-range" min="0" max="2000" value="2000" step="50">
+          </div>
+          <button class="btn btn-ghost btn-block" onclick="clearFilters()"><i class="fa-solid fa-rotate-left"></i> Reset Filters</button>
+        </aside>
+
+        <!-- Products -->
+        <div>
+          <div class="toolbar">
+            <button class="btn btn-ghost btn-sm mobile-filter-btn" onclick="document.getElementById('filters').classList.add('open')"><i class="fa-solid fa-sliders"></i> Filters</button>
+            <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input id="top-search" placeholder="Search products..."></div>
+            <span class="result-count" id="result-count"></span>
+            <select class="input" id="sort-select" style="width:auto">
+              <option value="featured">Sort: Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name">Name: A-Z</option>
+            </select>
+          </div>
+          <div class="product-grid" id="products-grid"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-holder"></div>
+  <script src="js/app.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>
