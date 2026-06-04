@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vishal Beej Bhandar — Trusted Seeds & Agri Inputs Since 1995</title>
+  <meta name="description"
+    content="Vishal Beej Bhandar, Dumraon (Buxar, Bihar) — Authorised dealer of Indofil, Seminis & Clause. Quality seeds, fungicides, fertilizers & expert farming guidance since 1995.">
+  <link rel="icon" href="images/logo.png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+  <div id="header-holder"></div>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero-section">
+    <video class="hero-video" id="hero-video" autoplay muted loop playsinline>
+    </video>
+    <script>
+      (function () {
+        var vids = [
+          'images/hero-video.mp4',
+          'videos/119315-717336896_medium.mp4',
+          'videos/120668-721759712_medium.mp4',
+          'videos/168885-839807943_medium.mp4',
+          'videos/234706_medium.mp4',
+          'videos/27282-363287610_medium.mp4',
+          'videos/354006_medium.mp4',
+          'videos/44759-440059599_medium.mp4',
+          'videos/59483-493557880_medium.mp4',
+          'videos/80417-572395833_medium.mp4'
+        ];
+        var lastIdx = parseInt(localStorage.getItem('vbb-hero-vid') || '-1');
+        var idx = lastIdx;
+        while (idx === lastIdx) { idx = Math.floor(Math.random() * vids.length); }
+        localStorage.setItem('vbb-hero-vid', idx);
+        var v = document.getElementById('hero-video');
+        var s = document.createElement('source');
+        s.src = vids[idx];
+        s.type = 'video/mp4';
+        v.appendChild(s);
+        v.load();
+      })();
+    </script>
+    <div class="hero-overlay"></div>
+    <span class="leaf-float" style="top:18%;left:8%">🌿</span>
+    <span class="leaf-float" style="top:60%;left:14%;animation-delay:2s">🍃</span>
+    <span class="leaf-float" style="top:28%;right:10%;animation-delay:1.2s">🌱</span>
+    <span class="leaf-float" style="bottom:18%;right:18%;animation-delay:3s"></span>
+
+    <div class="container hero-content">
+      <span class="hero-eyebrow"><i class="fa-solid fa-seedling"></i> Authorised dealer of Indofil • Seminis •
+        Clause</span>
+      <h1>
+        <span class="line">Sow Quality.</span>
+        <span class="line gradient-text"
+          style="background:linear-gradient(90deg,#ffd0e2,#97ad52);-webkit-background-clip:text;background-clip:text;color:transparent;">Grow
+          Prosperity.</span>
+        <span class="line">Harvest Trust.</span>
+      </h1>
+      <div class="typed-wrap"><span class="typed-text" id="typed"></span><span class="typed-cursor">&nbsp;</span></div>
+      <p class="lead">Premium seeds, crop-protection & plant nutrition for the farmers of Buxar and beyond — backed by
+        30+ years of honest service.</p>
+      <div class="hero-cta">
+        <a href="products.html" class="btn btn-primary"><i class="fa-solid fa-bag-shopping"></i> Shop Products</a>
+        <a href="plant-doctor.html" class="btn btn-ghost"
+          style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.3)"><i
+            class="fa-solid fa-stethoscope"></i> Try AI Plant Doctor</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num" data-count="30">0</div>
+          <div class="lbl">Years of Trust</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num" data-count="500">0</div>
+          <div class="lbl">Products</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num" data-count="10000">0</div>
+          <div class="lbl">Happy Farmers</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">3</div>
+          <div class="lbl">Top Brands</div>
+        </div>
+      </div>
+    </div>
+    <a href="#categories" class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></a>
+  </section>
+
+  <!-- ============ BRAND STRIP ============ -->
+  <div class="brand-strip">
+    <div class="container">
+      <span class="bs-label">Trusted Brands We Carry:</span>
+      <a href="products.html?brand=Indofil" class="brand-chip">INDOFIL</a>
+      <a href="products.html?brand=Seminis" class="brand-chip">SEMINIS</a>
+      <a href="products.html?brand=Clause" class="brand-chip">CLAUSE</a>
+    </div>
+  </div>
+
+  <!-- ============ CATEGORIES ============ -->
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Browse</span>
+        <h2>Shop by <span class="gradient-text">Category</span></h2>
+        <p>Everything your farm needs — from certified seeds to crop protection.</p>
+      </div>
+      <div class="cat-grid reveal" id="cat-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED PRODUCTS ============ -->
+  <section class="section" style="background:var(--bg-alt)">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Handpicked</span>
+        <h2>Featured <span class="gradient-text">Products</span></h2>
+        <p>Top-selling, farmer-favourite products from our store.</p>
+      </div>
+      <div class="product-grid reveal" id="featured-grid">
+        <div class="spinner"></div>
+      </div>
+      <div style="text-align:center;margin-top:36px" class="reveal">
+        <a href="products.html" class="btn btn-outline">View All Products <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY US ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Why Choose Us</span>
+        <h2>The Vishal Beej Bhandar <span class="gradient-text">Promise</span></h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-box reveal">
+          <div class="feature-ico"><i class="fa-solid fa-award"></i></div>
+          <h4>30+ Years of Trust</h4>
+          <p>Serving farmers honestly since 1995 with genuine, quality-checked products.</p>
+        </div>
+        <div class="feature-box reveal">
+          <div class="feature-ico"><i class="fa-solid fa-certificate"></i></div>
+          <h4>100% Genuine</h4>
+          <p>Authorised dealer of Indofil, Seminis & Clause — no duplicates, ever.</p>
+        </div>
+        <div class="feature-box reveal">
+          <div class="feature-ico"><i class="fa-solid fa-user-doctor"></i></div>
+          <h4>Expert Guidance</h4>
+          <p>Free crop advice & our AI Plant Doctor to diagnose plant problems.</p>
+        </div>
+        <div class="feature-box reveal">
+          <div class="feature-ico"><i class="fa-solid fa-truck-fast"></i></div>
+          <h4>Reliable Supply</h4>
+          <p>Well-stocked through every season so your sowing is never delayed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AI DOCTOR PROMO ============ -->
+  <section class="section" style="background:var(--bg-alt)">
+    <div class="container">
+      <div class="ai-promo reveal">
+        <div>
+          <span class="eyebrow"
+            style="color:var(--accent);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.8rem">New
+            Feature</span>
+          <h2>🌱 AI Plant Doctor</h2>
+          <p>Worried about your crop? Tell us the symptoms and our smart Plant Doctor will identify the likely problem
+            and recommend the right products from our store.</p>
+          <ul>
+            <li><i class="fa-solid fa-circle-check"></i> Detects diseases, pests & deficiencies</li>
+            <li><i class="fa-solid fa-circle-check"></i> Recommends exact products to fix it</li>
+            <li><i class="fa-solid fa-circle-check"></i> Free, instant & easy to use</li>
+          </ul>
+          <a href="plant-doctor.html" class="btn btn-primary"><i class="fa-solid fa-stethoscope"></i> Diagnose My
+            Plant</a>
+        </div>
+        <div class="ai-visual"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Farmer Voices</span>
+        <h2>What Farmers <span class="gradient-text">Say</span></h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Best seed shop in Dumraon. Ramakant ji always gives the right advice for my fields. Trusted for years!"
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">RK</div>
+            <div><strong>Rajesh Kumar</strong><small>Farmer, Buxar</small></div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Genuine Seminis seeds and great germination. My tomato yield improved a lot this season."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">SD</div>
+            <div><strong>Sunil Das</strong><small>Vegetable grower</small></div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"The AI Plant Doctor told me exactly what fungicide to use. Saved my wheat crop. Highly recommend."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">MA</div>
+            <div><strong>Manoj Anand</strong><small>Wheat farmer</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <span class="deco" style="left:10px;top:-10px">🌾</span>
+        <span class="deco" style="right:10px;bottom:-20px">🌱</span>
+        <h2>Ready to grow with us?</h2>
+        <p>Visit our store in Naya Bhojpur, Dumraon or order online. Have a question? We're just a WhatsApp away.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a href="products.html" class="btn" style="background:#fff;color:var(--green-700)"><i
+              class="fa-solid fa-store"></i> Browse Store</a>
+          <a href="https://wa.me/918804428490" target="_blank" class="btn"
+            style="background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.4)"><i
+              class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-holder"></div>
+
+  <script src="js/app.js"></script>
+  <script src="js/home.js"></script>
+</body>
+
+</html>

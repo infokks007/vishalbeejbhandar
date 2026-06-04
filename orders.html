@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders — Vishal Beej Bhandar</title>
+  <link rel="icon" href="images/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .orders-list { display: flex; flex-direction: column; gap: 20px; max-width: 860px; margin: 0 auto; }
+    .order-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: box-shadow .3s; }
+    .order-card:hover { box-shadow: var(--shadow-lg); }
+    .order-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+    .order-id { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
+    .order-date { font-size: .85rem; color: var(--text-soft); }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 50px; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+    .status-pending { background: #fff3e0; color: #e65100; }
+    .status-processing { background: #e3f2fd; color: #1565c0; }
+    .status-shipped { background: #f3e5f5; color: #7b1fa2; }
+    .status-delivered { background: #e8f5e9; color: #2e7d32; }
+    .status-cancelled { background: #ffebee; color: #c62828; }
+    [data-theme="dark"] .status-pending { background: rgba(255,152,0,.15); color: #ffb74d; }
+    [data-theme="dark"] .status-processing { background: rgba(33,150,243,.15); color: #64b5f6; }
+    [data-theme="dark"] .status-shipped { background: rgba(156,39,176,.15); color: #ce93d8; }
+    [data-theme="dark"] .status-delivered { background: rgba(76,175,80,.15); color: #81c784; }
+    [data-theme="dark"] .status-cancelled { background: rgba(244,67,54,.15); color: #ef9a9a; }
+    .order-items { padding: 20px 24px; }
+    .order-item-row { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .order-item-row:last-child { border-bottom: none; }
+    .order-item-row img { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; }
+    .oi-info { flex: 1; }
+    .oi-info h4 { font-size: .92rem; margin-bottom: 2px; }
+    .oi-info small { color: var(--text-soft); font-size: .8rem; }
+    .oi-price { font-weight: 700; color: var(--green-700); font-size: .95rem; }
+    [data-theme="dark"] .oi-price { color: var(--olive-light); }
+    .order-footer { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: var(--grad-soft); border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+    .order-total { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--text); }
+    .order-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    /* Track timeline */
+    .track-timeline { padding: 20px 24px; display: none; }
+    .track-timeline.open { display: block; animation: fadeIn .4s; }
+    .tl-steps { display: flex; justify-content: space-between; position: relative; padding: 0; margin: 20px 0 0; }
+    .tl-steps::before { content: ''; position: absolute; top: 16px; left: 0; right: 0; height: 3px; background: var(--border); z-index: 0; }
+    .tl-step { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 1; flex: 1; }
+    .tl-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--bg-card); border: 3px solid var(--border); display: grid; place-items: center; font-size: .85rem; color: var(--text-soft); transition: all .4s; }
+    .tl-step.done .tl-dot { background: var(--grad-main); border-color: transparent; color: #fff; }
+    .tl-step.active .tl-dot { border-color: var(--primary); background: var(--primary); color: #fff; animation: pulse-dot 2s infinite; }
+    .tl-label { font-size: .72rem; font-weight: 600; color: var(--text-soft); text-align: center; }
+    .tl-step.done .tl-label, .tl-step.active .tl-label { color: var(--primary); }
+    @keyframes pulse-dot { 0%,100% { box-shadow: 0 0 0 0 rgba(79,158,87,.3); } 50% { box-shadow: 0 0 0 10px rgba(79,158,87,0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @media (max-width: 600px) {
+      .order-header { flex-direction: column; align-items: flex-start; }
+      .order-footer { flex-direction: column; align-items: flex-start; }
+      .tl-label { font-size: .62rem; }
+      .tl-dot { width: 28px; height: 28px; font-size: .7rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-holder"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> / <span>My Orders</span></div>
+      <h1>My <span class="gradient-text">Orders</span></h1>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:40px">
+    <div class="container">
+      <div id="orders-body"></div>
+    </div>
+  </section>
+
+  <div id="footer-holder"></div>
+  <script src="js/app.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html>

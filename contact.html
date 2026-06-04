@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Vishal Beej Bhandar</title>
+  <meta name="description" content="Contact Vishal Beej Bhandar, Dumraon, Buxar. Call, WhatsApp 8804428490 or email infokks007@gmail.com.">
+  <link rel="icon" href="images/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
+    .info-card { display: flex; gap: 16px; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); margin-bottom: 16px; transition: transform .2s, box-shadow .2s; }
+    .info-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .info-ico { width: 50px; height: 50px; border-radius: 12px; background: var(--grad-soft); display: grid; place-items: center; font-size: 1.2rem; color: var(--primary); flex-shrink: 0; }
+    .info-card h4 { margin-bottom: 4px; }
+    .info-card a, .info-card p { color: var(--text-soft); font-size: .92rem; }
+    .info-card a:hover { color: var(--primary); }
+    .map-embed { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); margin-top: 8px; }
+    .map-embed iframe { width: 100%; height: 260px; border: 0; display: block; }
+    .hours-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border); font-size: .9rem; }
+    @media (max-width: 820px){ .contact-layout{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <div id="header-holder"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> / <span>Contact</span></div>
+      <h1>Get in <span class="gradient-text">Touch</span></h1>
+      <p>Questions about products or your crop? We're always happy to help.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+        <!-- Left: info -->
+        <div class="reveal">
+          <div class="info-card">
+            <div class="info-ico"><i class="fa-solid fa-location-dot"></i></div>
+            <div><h4>Our Store</h4><p>Naya Bhojpur, Dumraon,<br>Buxar, Bihar, India</p><a href="https://www.google.com/maps/place/Vishal+Beej+Bhandar/@25.5810141,84.1517662,19z" target="_blank">View on Google Maps →</a></div>
+          </div>
+          <div class="info-card">
+            <div class="info-ico"><i class="fa-solid fa-phone"></i></div>
+            <div><h4>Call / WhatsApp</h4><a href="tel:8804428490">+91 8804428490</a><br><a href="https://wa.me/918804428490" target="_blank">Chat on WhatsApp →</a></div>
+          </div>
+          <div class="info-card">
+            <div class="info-ico"><i class="fa-solid fa-envelope"></i></div>
+            <div><h4>Email Us</h4><a href="mailto:infokks007@gmail.com">infokks007@gmail.com</a></div>
+          </div>
+          <div class="info-card" style="display:block">
+            <h4 style="margin-bottom:10px"><i class="fa-solid fa-clock" style="color:var(--primary)"></i> Store Hours</h4>
+            <div class="hours-row"><span>Monday – Saturday</span><strong>8:00 AM – 8:00 PM</strong></div>
+            <div class="hours-row"><span>Sunday</span><strong>9:00 AM – 1:00 PM</strong></div>
+          </div>
+          <div class="map-embed">
+            <iframe loading="lazy" src="https://maps.google.com/maps?q=25.5810139,84.1524012&z=17&output=embed" title="Store location"></iframe>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="card reveal">
+          <h3 style="margin-bottom:6px">Send us a Message</h3>
+          <p style="color:var(--text-soft);font-size:.9rem;margin-bottom:20px">Your message is saved for our team and can be forwarded to our email & WhatsApp.</p>
+          <form id="contact-form">
+            <div class="form-group"><label>Your Name *</label><input id="c-name" required></div>
+            <div class="form-group"><label>Email</label><input type="email" id="c-email" placeholder="you@example.com"></div>
+            <div class="form-group"><label>Phone *</label><input id="c-phone" required></div>
+            <div class="form-group"><label>Subject</label>
+              <select id="c-subject"><option>Product Enquiry</option><option>Crop / Farming Advice</option><option>Order Status</option><option>Complaint</option><option>Other</option></select>
+            </div>
+            <div class="form-group"><label>Message *</label><textarea id="c-message" required placeholder="How can we help you?"></textarea></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+              <button class="btn btn-ghost" type="button" id="wa-btn"><i class="fa-brands fa-whatsapp"></i> Send via WhatsApp</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-holder"></div>
+  <script src="js/app.js"></script>
+  <script>
+    mountLayout('contact.html'); setTimeout(initReveal,150);
+
+    function buildWa() {
+      const n=document.getElementById('c-name').value, p=document.getElementById('c-phone').value,
+            e=document.getElementById('c-email').value, s=document.getElementById('c-subject').value,
+            m=document.getElementById('c-message').value;
+      return `*New Enquiry — Vishal Beej Bhandar*\n\n*Name:* ${n}\n*Phone:* ${p}\n*Email:* ${e||'-'}\n*Subject:* ${s}\n*Message:* ${m}`;
+    }
+
+    document.getElementById('wa-btn').addEventListener('click', () => {
+      const f = document.getElementById('contact-form');
+      if (!f.checkValidity()) { f.reportValidity(); return; }
+      saveMessage();
+      window.open(`https://wa.me/918804428490?text=${encodeURIComponent(buildWa())}`,'_blank');
+    });
+
+    async function saveMessage() {
+      try {
+        await apiCreate('messages', {
+          name: document.getElementById('c-name').value,
+          email: document.getElementById('c-email').value,
+          phone: document.getElementById('c-phone').value,
+          subject: document.getElementById('c-subject').value,
+          message: document.getElementById('c-message').value,
+          status: 'new'
+        });
+      } catch {}
+    }
+
+    document.getElementById('contact-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      await saveMessage();
+      // Also open email client to forward to shop email
+      const subj = encodeURIComponent('Website Enquiry: ' + document.getElementById('c-subject').value);
+      const body = encodeURIComponent(buildWa().replace(/\*/g,''));
+      toast('Message sent! Opening your email app to forward to us...');
+      setTimeout(()=> window.location.href = `mailto:infokks007@gmail.com?subject=${subj}&body=${body}`, 700);
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
